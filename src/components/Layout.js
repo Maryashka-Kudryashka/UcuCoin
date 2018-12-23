@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { Switch, Route } from "react-router-dom"
 import { withRouter } from "react-router-dom"
 
@@ -8,10 +8,15 @@ import Profile from "./Profile"
 import Reward from "./Reward"
 import Transactions from "./Transactions"
 
+import  { initTokenWatcher } from "../actions/balances"
+
 import block from "../helpers/BEM"
+import { lifecycle } from "recompose"
+import { compose } from "ramda"
+import { connect } from "react-redux";
 
 
-const b = block("Layout")
+const b = block("Layout");
 
 const Layout = () => {
   return (
@@ -24,7 +29,22 @@ const Layout = () => {
         <Route path="/transactions" component={Transactions} />
       </Switch>
     </div>
-  )
-}
+  );
+};
 
-export default withRouter(Layout)
+const enhancer = compose(
+  withRouter,
+  connect(
+    null,
+    dispatch => ({
+      tokenWatcher: () => dispatch(initTokenWatcher()),
+    })
+  ),
+  lifecycle({
+    componentDidMount() {
+      this.props.tokenWatcher()
+    }
+  })
+);
+
+export default enhancer(Layout);

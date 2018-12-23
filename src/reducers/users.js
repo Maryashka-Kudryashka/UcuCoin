@@ -5,7 +5,6 @@ import {
 } from '../helpers/actionTypes';
 
 export const allUsers = (state = [], action) => {
-    console.log(action, "REDUCER<<<<<<<<<<<<<,,")
   switch (action.type) {
     case FETCH_USERS_SUCCESS:
       return [
