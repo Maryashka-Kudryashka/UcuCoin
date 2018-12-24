@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 .Login {
-  background: rgb(64, 150, 193);
+  background: #3498db;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -15,7 +15,7 @@
 
 .Login__form {
   display: block;
-  width: 22%;
+  width: 18rem;
   margin: auto;
   background: #ecf0f1;
   color: #2c3e50;
