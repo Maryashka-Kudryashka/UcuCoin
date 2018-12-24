@@ -1,4 +1,4 @@
-import Web3 from 'web3';
+import Web3 from "web3";
 
 let UCUTokenContract;
 let UCUToken;
@@ -246,15 +246,13 @@ export const connectSmartContracts = () => {
     }
   ]);
 
-  UCUToken = UCUTokenContract.at(
-    "0x65a7a3a994882a5e285e19b2e3bdaf56a7f99595"
-  );
+  UCUToken = UCUTokenContract.at("0x65a7a3a994882a5e285e19b2e3bdaf56a7f99595");
 
   UCUTransferEvent = UCUToken.Transfer();
-}
+};
 
 export const getUCUToken = () => UCUToken;
 
-export const getUCUTransferEvent = () => UCUTransferEvent
+export const getUCUTransferEvent = () => UCUTransferEvent;
 
 export const getUCUTokenContract = () => UCUTokenContract;
