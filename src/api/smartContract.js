@@ -1,22 +1,18 @@
-import Web3 from "web3";
+import Web3 from "web3"
 
-let UCUTokenContract;
-let UCUToken;
-let UCUTransferEvent;
+let UCUTokenContract
+let UCUToken
+let UCUTransferEvent
 
 export const connectSmartContracts = () => {
-  let { web3 } = window;
+  let { web3 } = window
   if (typeof web3 !== "undefined") {
-    web3 = new Web3(web3.currentProvider);
+    web3 = new Web3(web3.currentProvider)
   } else {
-    web3 = new Web3(
-      new Web3.providers.HttpProvider(
-        "https://ropsten.infura.io/v3/a89d32d2485d404a89f2aeb789d502db"
-      )
-    );
+    web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/a89d32d2485d404a89f2aeb789d502db"))
   }
 
-  web3.eth.defaultAccount = web3.eth.accounts[0];
+  web3.eth.defaultAccount = web3.eth.accounts[0]
   UCUTokenContract = web3.eth.contract([
     {
       constant: false,
@@ -244,15 +240,15 @@ export const connectSmartContracts = () => {
       type: "function",
       stateMutability: "view"
     }
-  ]);
+  ])
 
-  UCUToken = UCUTokenContract.at("0x65a7a3a994882a5e285e19b2e3bdaf56a7f99595");
+  UCUToken = UCUTokenContract.at("0x65a7a3a994882a5e285e19b2e3bdaf56a7f99595")
 
-  UCUTransferEvent = UCUToken.Transfer();
-};
+  UCUTransferEvent = UCUToken.Transfer()
+}
 
-export const getUCUToken = () => UCUToken;
+export const getUCUToken = () => UCUToken
 
-export const getUCUTransferEvent = () => UCUTransferEvent;
+export const getUCUTransferEvent = () => UCUTransferEvent
 
-export const getUCUTokenContract = () => UCUTokenContract;
+export const getUCUTokenContract = () => UCUTokenContract

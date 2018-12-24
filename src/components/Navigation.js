@@ -1,13 +1,13 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { withRouter } from "react-router-dom";
-import { compose } from "ramda";
-import { branch, renderComponent, renderNothing } from "recompose";
+import React from "react"
+import { NavLink } from "react-router-dom"
+import { withRouter } from "react-router-dom"
+import { compose } from "ramda"
+import { branch, renderComponent, renderNothing } from "recompose"
 
-import block from "../helpers/BEM";
-import "../styles/Navigation.scss";
+import block from "../helpers/BEM"
+import "../styles/Navigation.scss"
 
-const b = block("Navigation");
+const b = block("Navigation")
 
 const StudentNav = () => (
   <nav className={b()}>
@@ -18,7 +18,7 @@ const StudentNav = () => (
       Reward
     </NavLink>
   </nav>
-);
+)
 
 const TeacherNav = () => (
   <nav className={b()}>
@@ -32,17 +32,15 @@ const TeacherNav = () => (
       Transactions
     </NavLink>
   </nav>
-);
+)
 
-const Navigation = () => {
-  
-}
+const Navigation = () => {}
 
 const enhancer = compose(
   withRouter,
   branch(({ role }) => role === "student", renderComponent(StudentNav)),
   branch(({ role }) => role === "teacher", renderComponent(TeacherNav)),
-  branch(({ role }) => role === "none", renderNothing()
-))
+  branch(({ role }) => role === "none", renderNothing())
+)
 
-export default enhancer(Navigation);
+export default enhancer(Navigation)

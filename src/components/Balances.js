@@ -1,21 +1,21 @@
-import React from "react";
-import { compose } from "ramda";
-import { lifecycle, withProps } from "recompose";
-import { connect } from "react-redux";
+import React from "react"
+import { compose } from "ramda"
+import { lifecycle, withProps } from "recompose"
+import { connect } from "react-redux"
 
-import { fetchUsers } from "../actions/users";
-import { getAllUsers, getBalances } from "../reducers";
+import { fetchUsers } from "../actions/users"
+import { getAllUsers, getBalances } from "../reducers"
 
-import block from "../helpers/BEM";
-import "../styles/Balances.scss";
+import block from "../helpers/BEM"
+import "../styles/Balances.scss"
 
-const b = block("Balances");
+const b = block("Balances")
 
 const Balances = ({ users }) => {
-  console.log(users, "USERS");
+  console.log(users, "USERS")
   return (
     <div className={b()}>
-      {users.map((el) => (
+      {users.map(el => (
         <div className={b("student")}>
           <label className={b("item")}>
             Name:
@@ -32,8 +32,8 @@ const Balances = ({ users }) => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
 export default compose(
   connect(
@@ -48,15 +48,15 @@ export default compose(
   lifecycle({
     componentDidMount() {
       if (this.props.users.length === 0) {
-        this.props.allUsers();
+        this.props.allUsers()
       }
     }
   }),
   withProps(({ users, balances }) => ({
     users: users.map(user => {
-      let balanceObj = balances.find(b => b.address === user.address);
-      let balance = balanceObj ? balanceObj.value : 0;
-      return { ...user, balance };
+      let balanceObj = balances.find(b => b.address === user.address)
+      let balance = balanceObj ? balanceObj.value : 0
+      return { ...user, balance }
     })
   }))
-)(Balances);
+)(Balances)

@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
 import { Switch, Route, Redirect } from "react-router-dom"
 import { withRouter } from "react-router-dom"
 import { lifecycle, withProps, branch, renderComponent } from "recompose"
 import { compose } from "ramda"
-import { connect } from "react-redux";
+import { connect } from "react-redux"
 
 import Navigation from "./Navigation"
 import Balances from "./Balances"
@@ -17,8 +17,7 @@ import { getCurrentUser } from "../reducers"
 
 import block from "../helpers/BEM"
 
-
-const b = block("Layout");
+const b = block("Layout")
 
 const TeacherRoute = ({ component: Component, role, ...rest }) => (
   <Route
@@ -59,7 +58,6 @@ const CommonRoute = ({ component: Component, role, ...rest }) => (
   />
 )
 
-
 const Layout = ({ role }) => {
   return (
     <div className={b()}>
@@ -72,8 +70,8 @@ const Layout = ({ role }) => {
         <TeacherRoute role={role} path="/transactions" component={Transactions} />
       </Switch>
     </div>
-  );
-};
+  )
+}
 
 const enhancer = compose(
   withRouter,
@@ -82,7 +80,7 @@ const enhancer = compose(
       currenUser: getCurrentUser(state)
     }),
     dispatch => ({
-      tokenWatcher: () => dispatch(initTokenWatcher()),
+      tokenWatcher: () => dispatch(initTokenWatcher())
     })
   ),
   lifecycle({
@@ -94,6 +92,6 @@ const enhancer = compose(
   withProps(({ currenUser }) => ({
     role: currenUser ? currenUser.result.role : "none"
   }))
-);
+)
 
-export default enhancer(Layout);
+export default enhancer(Layout)

@@ -1,11 +1,11 @@
-import React from "react";
-import { compose } from "ramda";
-import { connect } from "react-redux";
-import { withState, withHandlers, lifecycle } from "recompose";
+import React from "react"
+import { compose } from "ramda"
+import { connect } from "react-redux"
+import { withState, withHandlers, lifecycle } from "recompose"
 
-import { makeTransaction } from "../actions/balances";
-import { fetchUsers } from "../actions/users";
-import { getAllUsers } from "../reducers";
+import { makeTransaction } from "../actions/balances"
+import { fetchUsers } from "../actions/users"
+import { getAllUsers } from "../reducers"
 
 const Transactions = ({ setSurname, setValue, formSubmission, balances }) => {
   return (
@@ -20,8 +20,8 @@ const Transactions = ({ setSurname, setValue, formSubmission, balances }) => {
       </label>
       <button>Submit</button>
     </form>
-  );
-};
+  )
+}
 
 const enhancedTransaction = compose(
   withState("value", "setValue"),
@@ -38,19 +38,19 @@ const enhancedTransaction = compose(
   lifecycle({
     componentDidMount() {
       if (this.props.users.length === 0) {
-        this.props.allUsers();
+        this.props.allUsers()
       }
     }
   }),
   withHandlers({
     formSubmission: ({ users, surname, value, pushTransaction }) => ev => {
-      ev.preventDefault();
+      ev.preventDefault()
       let address = users.find(user => user.surname === surname).address || undefined
       if (address && value) {
-        pushTransaction(address, value);
+        pushTransaction(address, value)
       }
     }
   })
-)(Transactions);
+)(Transactions)
 
-export default enhancedTransaction;
+export default enhancedTransaction
