@@ -1,5 +1,5 @@
 import * as fromApi from "../api/fetchContract"
-import { FETCH_USERS_BALANCES } from "../helpers/actionTypes"
+import { FETCH_USERS_BALANCES, FETCH_USER_BALANCE } from "../helpers/actionTypes"
 import { getUCUTransferEvent } from "../api/smartContract"
 import { fetchUsers } from "./users"
 
@@ -8,9 +8,19 @@ export const fetchUsersBalances = balances => ({
   balances
 })
 
+export const fetchUserBalance = balance => ({
+  type: FETCH_USER_BALANCE,
+  balance
+})
+
 export const fetchBalances = addresses => async dispatch => {
   let balances = await fromApi.recheckBalances(addresses)
   dispatch(fetchUsersBalances(balances))
+}
+
+export const fetchBalance = address => async dispatch => {
+  let balance = await fromApi.recheckBalances(address)
+  dispatch(fetchUserBalance(balance[0]))
 }
 
 export const makeTransaction = (adress, value) => async dispatch => {
