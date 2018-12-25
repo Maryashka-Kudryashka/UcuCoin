@@ -1,0 +1,119 @@
+.Testing {
+  color: #2c3e50;
+  &__header {
+    padding: 1.25rem 2.375rem;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+    font-size: 1.125rem;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2.375rem;
+  }
+
+  &__sending-form {
+    background: rgba(236, 240, 241, 0.7);
+    padding: 1.25rem;
+    flex-basis: 410px;
+  }
+
+  &__transactions {
+    flex-basis: 802px;
+    height: 21.8125rem;
+    overflow-y: auto;
+    margin-left: 3.125rem;
+  }
+
+  &__subheader {
+    font-size: 1.125rem;
+    margin-top: 0;
+    flex: 1 100%;
+    &_nomargin {
+      margin: 0;
+    }
+  }
+
+  &__email {
+    opacity: 0.75;
+    font-size: 0.875rem;
+    margin-bottom: 1.375rem;
+  }
+
+  &__balance-label {
+    font-size: 0.75rem;
+    font-weight: 300;
+  }
+
+  &__balance {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  &__transactions-heading,
+  &__transactions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 1rem;
+  }
+
+  &__transactions-row {
+    padding: 0.9375rem 0.625rem;
+    margin-bottom: 0.625rem;
+    background: rgba(236, 240, 241, 0.7);
+    font-size: 0.875rem;
+  }
+
+  &__col {
+    &_status {
+      flex-basis: 65px;
+      color: #26b325;
+    }
+
+    &_second,
+    &_third {
+      flex-basis: 109px;
+    }
+
+    &_fourth {
+      flex-basis: 47px;
+    }
+    &_fifth,
+    &_sixth {
+      flex-basis: 140px;
+    }
+  }
+
+  &__status {
+    font-weight: 300;
+    opacity: 0.75;
+    font-size: 0.75rem;
+  }
+
+  &__transactions-heading {
+    font-weight: 300;
+    opacity: 0.75;
+    font-size: 0.75rem;
+    padding: 0.625rem;
+    & > * {
+      color: #2c3e50;
+    }
+  }
+
+  &__students {
+    padding: 3rem 2.375rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  &__card {
+    width: 20%;
+    min-width: 15rem;
+    padding: 1.25rem;
+    margin-bottom: 0.875rem;
+    background-color: rgba(236, 240, 241, 0.7);
+  }
+}

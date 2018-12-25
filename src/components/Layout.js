@@ -16,6 +16,7 @@ import { initTokenWatcher } from "../actions/balances"
 import { getCurrentUser } from "../reducers"
 
 import block from "../helpers/BEM"
+import Testing from "./Testing"
 
 const b = block("Layout")
 
@@ -88,7 +89,7 @@ const enhancer = compose(
       this.props.tokenWatcher()
     }
   }),
-  branch(({ currenUser }) => !currenUser, renderComponent(Login)),
+  branch(({ currenUser }) => !currenUser, renderComponent(Login)), //!!!
   withProps(({ currenUser }) => ({
     role: currenUser ? currenUser.result.role : "none"
   }))
