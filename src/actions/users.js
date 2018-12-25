@@ -4,9 +4,11 @@ import {
   FETCH_USERS_SUCCESS,
   AUTH_USER_START,
   AUTH_USER_SUCCESS,
-  AUTH_USER_FAILED
+  AUTH_USER_FAILED,
+  AUTH_USER_LOGOUT
 } from "../helpers/actionTypes"
-import { fetchBalances } from "./balances"
+import { fetchBalances, fetchBalance } from "./balances"
+import { push } from "react-router-redux"
 
 export const fetchUsersStart = () => ({ type: FETCH_USERS_START })
 
@@ -21,6 +23,8 @@ export const authUserSuccess = user => ({ type: AUTH_USER_SUCCESS, user })
 
 export const authUserFailed = () => ({ type: AUTH_USER_FAILED })
 
+export const authUserLogout = () => ({ type: AUTH_USER_LOGOUT })
+
 export const fetchUsers = () => async dispatch => {
   dispatch(fetchUsersStart())
   let users = await fromApi.allUsers()
@@ -32,6 +36,18 @@ export const fetchUsers = () => async dispatch => {
 export const authenticateUser = (email, password) => async dispatch => {
   dispatch(authUserStart())
   const user = await fromApi.authUser(email, password)
-  console.log(user, "AUTH")
-  dispatch(authUserSuccess(user))
+  dispatch(authUserSuccess(user));
+  dispatch(push("/"));
+}
+
+export const fetchCurrentUser = () => async dispatch => {
+  dispatch(authUserStart())
+  const user = await fromApi.fetchCurrentUser();
+  dispatch(fetchBalance([user.result.address]))
+  dispatch(authUserSuccess(user));
+}
+
+export const authLogout = () => async dispatch => {
+  const user = await fromApi.userLogout();  
+  dispatch(authUserLogout())
 }

@@ -1,46 +1,33 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
-import { withRouter } from "react-router-dom"
 import { compose } from "ramda"
-import { branch, renderComponent, renderNothing } from "recompose"
+import { connect } from "react-redux"
 
+import { authLogout } from "../actions/users"
 import block from "../helpers/BEM"
 import "../styles/Navigation.scss"
 
 const b = block("Navigation")
 
-const StudentNav = () => (
-  <nav className={b()}>
-    <NavLink to="/" exact className={b("link")}>
-      Profile
-    </NavLink>
-    <NavLink to="/reward" className={b("link")}>
-      Reward
-    </NavLink>
-  </nav>
+const Navigation = ({ user, logout }) => (
+  <div>
+    <span>LOGO</span>
+    <div>
+      <span>
+        {user.name} {user.surname}
+      </span>
+      <span>{user.email}</span>
+      <button onClick={logout}>LOGOUT</button>
+    </div>
+  </div>
 )
-
-const TeacherNav = () => (
-  <nav className={b()}>
-    <NavLink to="/" exact className={b("link")}>
-      Profile
-    </NavLink>
-    <NavLink to="/balances" className={b("link")}>
-      Balances
-    </NavLink>
-    <NavLink to="/transactions" className={b("link")}>
-      Transactions
-    </NavLink>
-  </nav>
-)
-
-const Navigation = () => {}
 
 const enhancer = compose(
-  withRouter,
-  branch(({ role }) => role === "student", renderComponent(StudentNav)),
-  branch(({ role }) => role === "teacher", renderComponent(TeacherNav)),
-  branch(({ role }) => role === "none", renderNothing())
+  connect(
+    null,
+    dispatch => ({
+      logout: () => dispatch(authLogout())
+    })
+  )
 )
 
 export default enhancer(Navigation)

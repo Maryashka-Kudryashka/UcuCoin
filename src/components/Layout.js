@@ -6,69 +6,48 @@ import { compose } from "ramda"
 import { connect } from "react-redux"
 
 import Navigation from "./Navigation"
-import Balances from "./Balances"
-import Profile from "./Profile"
-import Reward from "./Reward"
-import Transactions from "./Transactions"
+import StudentPage from "./StudentPage"
+import TeacherPage from "./TeacherPage"
+import Loader from "./Loader";
 import Login from "./Login"
 
 import { initTokenWatcher } from "../actions/balances"
-import { getCurrentUser } from "../reducers"
+import { fetchCurrentUser } from "../actions/users"
+import { getCurrentUser, isAuthFetching } from "../reducers"
 
 import block from "../helpers/BEM"
 import Testing from "./Testing"
 
 const b = block("Layout")
 
-const TeacherRoute = ({ component: Component, role, ...rest }) => (
+const PrivateRoute = ({ component: Component, role, isAuthFetching, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      role === "teacher" ? (
+      isAuthFetching !== false ? (
+        <Loader />
+      ) : role !== 'none' ? (
         <Component {...props} />
       ) : (
-        <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
-      )
+            <Redirect
+              to={{
+                pathname: '/login',
+                state: { from: props.location }
+              }}
+            />
+          )
     }
   />
-)
+);
 
-const StudentRoute = ({ component: Component, role, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      role === "student" ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
-      )
-    }
-  />
-)
-
-const CommonRoute = ({ component: Component, role, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      role === "teacher" || role === "student" ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
-      )
-    }
-  />
-)
-
-const Layout = ({ role }) => {
+const Layout = ({ role, isAuthFetching, currenUser }) => {
+  const component = role === 'teacher' ? TeacherPage : StudentPage;
   return (
     <div className={b()}>
-      <Navigation role={role} />
+      {role !== 'none' && <Navigation role={role} user={currenUser.result} />}
       <Switch>
-        <CommonRoute role={role} exact path="/" component={Profile} />
         <Route path="/login" component={Login} />
-        <TeacherRoute role={role} path="/balances" component={Balances} />
-        <StudentRoute role={role} path="/reward" component={Reward} />
-        <TeacherRoute role={role} path="/transactions" component={Transactions} />
+        <PrivateRoute path="/" exact component={component} role={role} isAuthFetching={isAuthFetching}/>
       </Switch>
     </div>
   )
@@ -78,20 +57,26 @@ const enhancer = compose(
   withRouter,
   connect(
     state => ({
-      currenUser: getCurrentUser(state)
+      currenUser: getCurrentUser(state),
+      isAuthFetching: isAuthFetching(state)
     }),
     dispatch => ({
-      tokenWatcher: () => dispatch(initTokenWatcher())
+      tokenWatcher: () => dispatch(initTokenWatcher()),
+      fetchCurrentUser: () => dispatch(fetchCurrentUser())
     })
   ),
   lifecycle({
     componentDidMount() {
       this.props.tokenWatcher()
+    },
+    componentWillMount() {
+      if (!this.props.currenUser) {
+        this.props.fetchCurrentUser();
+      }
     }
   }),
-  branch(({ currenUser }) => !currenUser, renderComponent(Login)), //!!!
   withProps(({ currenUser }) => ({
-    role: currenUser ? currenUser.result.role : "none"
+    role: (currenUser && currenUser.result) ? currenUser.result.role : "none"
   }))
 )
 
