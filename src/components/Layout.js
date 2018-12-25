@@ -5,7 +5,7 @@ import { lifecycle, withProps, branch, renderComponent } from "recompose"
 import { compose } from "ramda"
 import { connect } from "react-redux"
 
-import Navigation from "./Navigation"
+import Navigation from "./Navigation/Navigation"
 import StudentPage from "./StudentPage"
 import TeacherPage from "./TeacherPage"
 import Loader from "./Loader";

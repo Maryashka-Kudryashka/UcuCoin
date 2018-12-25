@@ -1,0 +1,27 @@
+.Navigation {
+  padding: 1.25rem 2.375rem;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+  font-size: 1.125rem;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  &__image {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+  }
+
+  &__logo {
+    flex-grow: 3;
+  }
+
+  &__username {
+    color: #3498db;
+
+    &:hover {
+      color: #2b7db4;
+    }
+  }
+}

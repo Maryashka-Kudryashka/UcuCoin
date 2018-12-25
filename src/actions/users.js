@@ -43,7 +43,9 @@ export const authenticateUser = (email, password) => async dispatch => {
 export const fetchCurrentUser = () => async dispatch => {
   dispatch(authUserStart())
   const user = await fromApi.fetchCurrentUser();
-  dispatch(fetchBalance([user.result.address]))
+  if (user.status !== "NOT LOGINED") {
+      dispatch(fetchBalance([user.result.address]))
+  }
   dispatch(authUserSuccess(user));
 }
 

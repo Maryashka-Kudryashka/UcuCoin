@@ -1,0 +1,37 @@
+.SignOut {
+  position: fixed;
+  top: 3.5rem;
+  right: 2rem;
+  display: none;
+  color: #2c3e50;
+  font-size: 0.875rem;
+  padding: 1.875rem 0.875rem 1.25rem 0.875rem;
+
+  &_visible {
+    display: block;
+    background: white;
+    box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  &__name {
+    margin-bottom: 0.25rem;
+  }
+
+  &__email {
+    opacity: 0.75;
+    font-weight: normal;
+    margin-bottom: 1.875rem;
+  }
+
+  &__button {
+    all: unset;
+    font-weight: 300;
+    color: #3498db;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #2b7db4;
+    }
+  }
+}
