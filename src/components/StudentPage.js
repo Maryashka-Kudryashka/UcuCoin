@@ -9,7 +9,7 @@ import { getCurrentUser } from "../reducers"
 const StudentPage = ({ currentUser }) => (
   <div>
     <RewardForm currenUser={currentUser} />
-    <Transactions />
+    <Transactions currenUser={currentUser} />
   </div>
 )
 
