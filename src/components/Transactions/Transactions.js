@@ -10,14 +10,46 @@ import "./Transactions.scss"
 
 const b = block("Transactions")
 
-const Transactions = () => {
-  return <div className={b()}>HERE GOES USER TRANSACTIONS</div>
-}
+const Transactions = () => (
+  <div className={b()}>
+    <div className={b("transactions")}>
+      <h3 className={b("subheader")}>My transactions</h3>
+      <div className={b("heading")}>
+        <div className={b("col", ["first"])}>Status</div>
+        <div className={b("col", ["second"])}>Date</div>
+        <div className={b("col", ["third"])}>To/From</div>
+        <div className={b("col", ["fourth"])}>Amount</div>
+        <div className={b("col", ["fifth"])}>Issue</div>
+        <div className={b("col", ["sixth"])}>Transaction ID</div>
+      </div>
+      <div className={b("row")}>
+        <div className={b("col", ["first"])}>Status</div>
+        <div className={b("col", ["second"])}>Date</div>
+        <div className={b("col", ["third"])}>
+          To/From<div className={b("status")}>Received</div>
+        </div>
+        <div className={b("col", ["fourth"])}>Amount</div>
+        <div className={b("col", ["fifth"])}>Issue</div>
+        <div className={b("col", ["sixth"])}>Transaction ID</div>
+      </div>
+      <div className={b("row")}>
+        <div className={b("col", ["first"])}>Status</div>
+        <div className={b("col", ["second"])}>Date</div>
+        <div className={b("col", ["third"])}>
+          To/From<div className={b("status")}>Received</div>
+        </div>
+        <div className={b("col", ["fourth"])}>Amount</div>
+        <div className={b("col", ["fifth"])}>Issue</div>
+        <div className={b("col", ["sixth"])}>Transaction ID</div>
+      </div>
+    </div>
+  </div>
+)
 
 const enhancer = compose(
   connect(
     state => ({
-    //   transactions: getUserTransactions(state)
+      //   transactions: getUserTransactions(state)
     }),
     dispatch => ({
       userTransactions: () => dispatch(fetchUserTransactions())
@@ -25,11 +57,10 @@ const enhancer = compose(
   ),
   lifecycle({
     componentDidMount() {
-    //   if (this.props.users.length === 0) {
-    //     this.props.userTransactions()
-    //   }
-        this.props.userTransactions()
-
+      //   if (this.props.users.length === 0) {
+      //     this.props.userTransactions()
+      //   }
+      this.props.userTransactions()
     }
   })
 )

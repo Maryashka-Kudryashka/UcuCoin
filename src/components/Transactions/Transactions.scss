@@ -3,4 +3,60 @@
   height: 21.8125rem;
   overflow-y: auto;
   margin-left: 3.125rem;
+  color: #2c3e50;
+  &__heading,
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 1rem;
+  }
+  &__row {
+    padding: 0.9375rem 0.625rem;
+    margin-bottom: 0.625rem;
+    background: rgba(236, 240, 241, 0.7);
+    font-size: 0.875rem;
+  }
+  &__col {
+    &_first {
+      flex-basis: 65px;
+      color: #26b325;
+    }
+    &_second,
+    &_third {
+      flex-basis: 109px;
+    }
+
+    &_fourth {
+      flex-basis: 47px;
+    }
+    &_fifth,
+    &_sixth {
+      flex-basis: 140px;
+    }
+  }
+
+  &__heading {
+    font-weight: 300;
+    opacity: 0.75;
+    font-size: 0.75rem;
+    padding: 0.625rem;
+    & > * {
+      color: #2c3e50;
+    }
+  }
+
+  &__status {
+    font-weight: 300;
+    opacity: 0.75;
+    font-size: 0.75rem;
+  }
+  &__subheader {
+    font-size: 1.125rem;
+    margin-top: 0;
+    flex: 1 100%;
+    &_nomargin {
+      margin: 0;
+    }
+  }
 }

@@ -8,7 +8,7 @@ const Balances = ({ users = [] }) => (
   <div className={b()}>
     <h3 className={b("header")}>Students</h3>
     {users.map(el => (
-      <div className={b("student")}>
+      <div key={el.email} className={b("student")}>
         <div className={b("name")}>
           {el.name} {el.surname}
         </div>

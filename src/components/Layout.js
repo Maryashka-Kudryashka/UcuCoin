@@ -1,6 +1,6 @@
 import React from "react"
 import { Switch, Route, Redirect, withRouter } from "react-router-dom"
-import { lifecycle, withProps} from "recompose"
+import { lifecycle, withProps } from "recompose"
 import { compose } from "ramda"
 import { connect } from "react-redux"
 import Navigation from "./Navigation"
