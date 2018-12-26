@@ -1,4 +1,5 @@
 import * as fromApi from "../api/fetch"
+import * as fromApiContract from "../api/fetchContract"
 import {
   FETCH_USERS_START,
   FETCH_USERS_SUCCESS,
@@ -52,4 +53,9 @@ export const fetchCurrentUser = () => async dispatch => {
 export const authLogout = () => async dispatch => {
   const user = await fromApi.userLogout()
   dispatch(authUserLogout())
+}
+
+export const fetchUserTransactions = () => async dispatch => {
+  const transactions = await fromApiContract.getData("0x68F074d6eFF2EfEDDa3dC36BeB1E238C3117c90F")
+  console.log(transactions.result[0], "TRAANS")
 }

@@ -15,27 +15,79 @@ export const connectSmartContracts = () => {
   web3.eth.defaultAccount = web3.eth.accounts[0]
   UCUTokenContract = web3.eth.contract([
     {
-      constant: false,
-      inputs: [
-        {
-          name: "_spender",
-          type: "address"
-        },
-        {
-          name: "_value",
-          type: "uint256"
-        }
-      ],
-      name: "approve",
+      constant: true,
+      inputs: [],
+      name: "name",
       outputs: [
         {
-          name: "success",
-          type: "bool"
+          name: "",
+          type: "string"
         }
       ],
       payable: false,
-      type: "function",
-      stateMutability: "nonpayable"
+      stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [],
+      name: "totalSupply",
+      outputs: [
+        {
+          name: "",
+          type: "uint256"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [],
+      name: "standard",
+      outputs: [
+        {
+          name: "",
+          type: "string"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [
+        {
+          name: "",
+          type: "address"
+        }
+      ],
+      name: "balanceOf",
+      outputs: [
+        {
+          name: "",
+          type: "uint256"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [],
+      name: "symbol",
+      outputs: [
+        {
+          name: "",
+          type: "string"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
     },
     {
       constant: false,
@@ -57,35 +109,8 @@ export const connectSmartContracts = () => {
         }
       ],
       payable: false,
-      type: "function",
-      stateMutability: "nonpayable"
-    },
-    {
-      constant: false,
-      inputs: [
-        {
-          name: "_from",
-          type: "address"
-        },
-        {
-          name: "_to",
-          type: "address"
-        },
-        {
-          name: "_value",
-          type: "uint256"
-        }
-      ],
-      name: "transferFrom",
-      outputs: [
-        {
-          name: "success",
-          type: "bool"
-        }
-      ],
-      payable: false,
-      type: "function",
-      stateMutability: "nonpayable"
+      stateMutability: "nonpayable",
+      type: "function"
     },
     {
       inputs: [
@@ -95,8 +120,8 @@ export const connectSmartContracts = () => {
         }
       ],
       payable: false,
-      type: "constructor",
-      stateMutability: "nonpayable"
+      stateMutability: "nonpayable",
+      type: "constructor"
     },
     {
       anonymous: false,
@@ -119,130 +144,10 @@ export const connectSmartContracts = () => {
       ],
       name: "Transfer",
       type: "event"
-    },
-    {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: true,
-          name: "_owner",
-          type: "address"
-        },
-        {
-          indexed: true,
-          name: "_spender",
-          type: "address"
-        },
-        {
-          indexed: false,
-          name: "_value",
-          type: "uint256"
-        }
-      ],
-      name: "Approval",
-      type: "event"
-    },
-    {
-      constant: true,
-      inputs: [
-        {
-          name: "",
-          type: "address"
-        },
-        {
-          name: "",
-          type: "address"
-        }
-      ],
-      name: "allowance",
-      outputs: [
-        {
-          name: "",
-          type: "uint256"
-        }
-      ],
-      payable: false,
-      type: "function",
-      stateMutability: "view"
-    },
-    {
-      constant: true,
-      inputs: [
-        {
-          name: "",
-          type: "address"
-        }
-      ],
-      name: "balanceOf",
-      outputs: [
-        {
-          name: "",
-          type: "uint256"
-        }
-      ],
-      payable: false,
-      type: "function",
-      stateMutability: "view"
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: "name",
-      outputs: [
-        {
-          name: "",
-          type: "string"
-        }
-      ],
-      payable: false,
-      type: "function",
-      stateMutability: "view"
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: "standard",
-      outputs: [
-        {
-          name: "",
-          type: "string"
-        }
-      ],
-      payable: false,
-      type: "function",
-      stateMutability: "view"
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: "symbol",
-      outputs: [
-        {
-          name: "",
-          type: "string"
-        }
-      ],
-      payable: false,
-      type: "function",
-      stateMutability: "view"
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: "totalSupply",
-      outputs: [
-        {
-          name: "",
-          type: "uint256"
-        }
-      ],
-      payable: false,
-      type: "function",
-      stateMutability: "view"
     }
   ])
 
-  UCUToken = UCUTokenContract.at("0x65a7a3a994882a5e285e19b2e3bdaf56a7f99595")
+  UCUToken = UCUTokenContract.at("0x0cca8df48085ca47b311aba977c14dbfd3eae83d")
 
   UCUTransferEvent = UCUToken.Transfer()
 }
