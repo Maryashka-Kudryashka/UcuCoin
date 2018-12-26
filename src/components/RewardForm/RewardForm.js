@@ -3,22 +3,20 @@ import { compose } from "ramda"
 import { connect } from "react-redux"
 import { withState, withHandlers, withProps } from "recompose"
 import { makeTransaction } from "../../actions/balances"
-import Select from "react-select"
 
 import block from "../../helpers/BEM"
-import "./TransactionForm.scss"
+import "./RewardForm.scss"
 
-const b = block("TransactionForm")
+const b = block("RewardForm")
 
-const TransactionsForm = ({ setAddress, setValue, setIssue, formSubmission, currenUser, options }) => (
+const RewardForm = ({ setValue, setIssue, formSubmission, currenUser }) => (
   <form
     className={b()}
     onSubmit={formSubmission}
+    style={{ width: "300px" }}
   >
     <div className={b("label")}>Wallet balance: </div>
     <div className={b("balance")}>{currenUser.balance} UCU</div>
-    <label className={b("label")}>Send to:</label>
-    <Select className={b("input")} options={options} onChange={value => setAddress(value.value)} />
 
     <label className={b("label")}>Issue:</label>
     <input className={b("input")} onChange={ev => setIssue(ev.target.value)} />
@@ -26,13 +24,12 @@ const TransactionsForm = ({ setAddress, setValue, setIssue, formSubmission, curr
     <label className={b("label")}>Amount:</label>
     <input className={b("input")} onChange={ev => setValue(ev.target.value)} />
 
-    <button className={b("button")}>Send</button>
+    <button className={b("button")}>Spend</button>
   </form>
 )
 
 const enhancer = compose(
   withState("value", "setValue"),
-  withState("address", "setAddress"),
   withState("issue", "setIssue"),
   connect(
     null,
@@ -40,20 +37,17 @@ const enhancer = compose(
       pushTransaction: (adress, value) => dispatch(makeTransaction(adress, value))
     })
   ),
+  withProps({
+    admin: "0x68F074d6eFF2EfEDDa3dC36BeB1E238C3117c90F"
+  }),
   withHandlers({
-    formSubmission: ({ address, value, pushTransaction }) => ev => {
+    formSubmission: ({ admin, value, pushTransaction }) => ev => {
       ev.preventDefault()
-      if (address && value) {
-        pushTransaction(address, value)
+      if (admin && value) {
+        pushTransaction(admin, value)
       }
     }
-  }),
-  withProps(({ users }) => ({
-    options: users.map(user => ({
-      value: user.address,
-      label: user.name + " " + user.surname
-    }))
-  }))
+  })
 )
 
-export default enhancer(TransactionsForm)
+export default enhancer(RewardForm)

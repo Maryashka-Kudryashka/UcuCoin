@@ -1,5 +1,25 @@
 import React from "react"
+import { compose } from "ramda"
+import { connect } from "react-redux"
 
-const StudentPage = () => <div>Student</div>
+import Transactions from "./Transactions"
+import RewardForm from "./RewardForm/RewardForm"
+import { getCurrentUser } from "../reducers"
 
-export default StudentPage
+const StudentPage = ({ currentUser }) => (
+  <div>
+    <RewardForm currenUser={currentUser} />
+    <Transactions />
+  </div>
+)
+
+const enhancer = compose(
+    connect(
+      state => ({
+        currentUser: getCurrentUser(state)
+      }),
+      null
+    )
+  )
+
+export default enhancer(StudentPage)
