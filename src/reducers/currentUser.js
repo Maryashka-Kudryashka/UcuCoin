@@ -10,7 +10,7 @@ export const currentUser = (state = {}, action) => {
       return { user: null, fetching: false }
     case FETCH_USER_BALANCE:
       console.log(action, "RED")
-      return  { user: {...state.user, balance: action.balance.value}, fetching: state.fetching}
+      return { user: { ...state.user, balance: action.balance.value }, fetching: state.fetching }
     default:
       return state
   }

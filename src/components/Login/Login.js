@@ -12,9 +12,19 @@ const Login = ({ setEmail, setPassword, formSubmission }) => {
   return (
     <div className={"Login"}>
       <form className={"Login__form"} onSubmit={formSubmission}>
-          <h1 className={"Login__header"}>ucu token</h1>
-          <input className={"Login__input"} placeholder={"email"} type={"email"} onChange={ev => setEmail(ev.target.value)} />
-        <input className={"Login__input"} placeholder={"password"} type={"password"} onChange={ev => setPassword(ev.target.value)} />
+        <h1 className={"Login__header"}>ucu token</h1>
+        <input
+          className={"Login__input"}
+          placeholder={"email"}
+          type={"email"}
+          onChange={ev => setEmail(ev.target.value)}
+        />
+        <input
+          className={"Login__input"}
+          placeholder={"password"}
+          type={"password"}
+          onChange={ev => setPassword(ev.target.value)}
+        />
         <button className={"Login__button"}>login</button>
       </form>
     </div>

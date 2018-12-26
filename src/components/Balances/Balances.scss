@@ -1,0 +1,47 @@
+.Balances {
+  background: white;
+  flex: 1 100%;
+  padding: 3rem 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: left;
+  &__student {
+    flex: 20%;
+    max-width: 20%;
+    min-width: 15rem;
+    padding: 1.25rem;
+    margin-right: 1rem;
+    margin-bottom: 0.875rem;
+    background-color: rgba(236, 240, 241, 0.7);
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &__header {
+    font-size: 1.125rem;
+    margin-top: 0;
+    flex: 1 100%;
+  }
+
+  &__name {
+    color: #2c3e50;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+
+  &__email {
+    opacity: 0.75;
+    font-size: 0.875rem;
+    margin-bottom: 1.375rem;
+  }
+
+  &__balance-label {
+    font-size: 0.75rem;
+    font-weight: 300;
+  }
+
+  &__balance {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}

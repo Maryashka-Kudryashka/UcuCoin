@@ -36,20 +36,20 @@ export const fetchUsers = () => async dispatch => {
 export const authenticateUser = (email, password) => async dispatch => {
   dispatch(authUserStart())
   const user = await fromApi.authUser(email, password)
-  dispatch(authUserSuccess(user));
-  dispatch(push("/"));
+  dispatch(authUserSuccess(user))
+  dispatch(push("/"))
 }
 
 export const fetchCurrentUser = () => async dispatch => {
   dispatch(authUserStart())
-  const user = await fromApi.fetchCurrentUser();
+  const user = await fromApi.fetchCurrentUser()
   if (user.status !== "NOT LOGINED") {
-      dispatch(fetchBalance([user.result.address]))
+    dispatch(fetchBalance([user.result.address]))
   }
-  dispatch(authUserSuccess(user));
+  dispatch(authUserSuccess(user))
 }
 
 export const authLogout = () => async dispatch => {
-  const user = await fromApi.userLogout();  
+  const user = await fromApi.userLogout()
   dispatch(authUserLogout())
 }

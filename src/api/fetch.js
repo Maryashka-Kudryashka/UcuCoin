@@ -26,7 +26,7 @@ export async function fetchCurrentUser() {
   headers.append("Content-Type", "application/json")
 
   const response = await fetch(`/user/getCurrentUser`, {
-    headers,
+    headers
   })
   if (response === null) {
     console.log("No current user ERROR!!!")
@@ -36,15 +36,15 @@ export async function fetchCurrentUser() {
 }
 
 export async function userLogout() {
-    const headers = new Headers()
-    headers.append("Content-Type", "application/json")
-  
-    const response = await fetch(`/user/logout`, {
-      method: "POST",
-      headers
-    })
-    if (response === null) {
-      console.log("Cannot logout!")
-      return "getCurrentUser error!"
-    }
+  const headers = new Headers()
+  headers.append("Content-Type", "application/json")
+
+  const response = await fetch(`/user/logout`, {
+    method: "POST",
+    headers
+  })
+  if (response === null) {
+    console.log("Cannot logout!")
+    return "getCurrentUser error!"
+  }
 }

@@ -8,7 +8,7 @@ export const getAllUsers = state => fromUsers.getAllUsers(state.users)
 export const isUsersFetching = state => fromUsers.isUsersFetching(state.users)
 export const getBalances = state => fromBalances.getBalances(state.balances)
 export const getCurrentUser = state => fromCurrentUser.getCurrentUser(state.currentUser)
-export const isAuthFetching = state => fromCurrentUser.isAuthFetching(state.currentUser);
+export const isAuthFetching = state => fromCurrentUser.isAuthFetching(state.currentUser)
 
 export default history =>
   combineReducers({
