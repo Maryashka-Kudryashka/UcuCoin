@@ -4,8 +4,10 @@ import { connect } from "react-redux"
 import { authLogout } from "../../actions/users"
 import block from "../../helpers/BEM"
 import { ReactComponent as Logo } from "./coin.svg"
+import { ReactComponent as ArrowActive } from "./down-active.svg"
+import { ReactComponent as ArrowNoActive } from "./down-notactive.svg"
 import SignOut from "../SignOut"
-import { withHandlers, defaultProps, withStateHandlers } from "recompose"
+import { withStateHandlers } from "recompose"
 
 import "./Navigation.scss"
 
@@ -18,6 +20,7 @@ const Navigation = ({ user, logout, toggleVisibility, tooltipVisible }) => (
     <div onClick={toggleVisibility}>
       <span className={b("username")}>
         {user.name} {user.surname}
+        {tooltipVisible ? <ArrowActive className={b("arrow")} /> : <ArrowNoActive className={b("arrow")} />}
       </span>
       <SignOut
         tooltipVisible={tooltipVisible}
