@@ -7,9 +7,17 @@ const b = block("Offers")
 
 const Offers = ({ products }) => (
   <div className={b()}>
+    <h3 className={b("header")}>Spend my coins!</h3>
     {products.map((product, id) => (
-      <div key={id}>
-        {product.name} {product.price}
+      <div className={b("offer")} key={id}>
+        <div className={b("name")}>{product.name}</div>
+        <div className={b("info")}>
+          <span className={b("price")}>
+            <span className={b("label")}>Price: </span>
+            {product.price} UCU
+          </span>
+          <button className={b("button")}>buy</button>
+        </div>
       </div>
     ))}
   </div>

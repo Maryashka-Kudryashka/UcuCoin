@@ -7,46 +7,43 @@
   display: flex;
   position: fixed;
   margin: 0;
-}
 
-.Login__header {
-  margin-bottom: 2rem;
-}
+  &__header {
+    margin-bottom: 2rem;
+  }
 
-.Login__form {
-  display: block;
-  width: 18rem;
-  margin: auto;
-  background: #ecf0f1;
-  color: #2c3e50;
-  padding: 0 2.5rem;
-  text-align: center;
-  font-family: "Roboto", sans-serif;
-  -webkit-box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.38);
-  -moz-box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.38);
-  box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.38);
-}
+  &__form {
+    display: block;
+    width: 18rem;
+    margin: auto;
+    background: #ecf0f1;
+    color: #2c3e50;
+    padding: 0 2.5rem;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.38);
+  }
 
-.Login__input {
-  display: block;
-  width: 100%;
-  margin-bottom: 1.5rem;
-  height: 2.5rem;
-  text-align: center;
-}
+  &__input {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    height: 2.5rem;
+    text-align: center;
+  }
 
-.Login__button {
-  background: #e74c3c;
-  color: white;
-  padding: 0.6rem 1.75rem;
-  -webkit-border-radius: 1.5rem;
-  -moz-border-radius: 1.5rem;
-  border-radius: 1.5rem;
-  border: none;
-  font-size: 1.5rem;
-  margin: 3rem 0 2rem 0;
-}
-
-.Login__button:hover {
-  background: rgba(203, 67, 53, 0.99);
+  &__button {
+    background: #e74c3c;
+    color: white;
+    padding: 0.6rem 1.75rem;
+    -webkit-border-radius: 1.5rem;
+    -moz-border-radius: 1.5rem;
+    border-radius: 1.5rem;
+    border: none;
+    font-size: 1.5rem;
+    margin: 3rem 0 2rem 0;
+    &:hover {
+      background: rgba(203, 67, 53, 0.99);
+    }
+  }
 }

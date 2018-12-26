@@ -1,8 +1,7 @@
 .Transactions {
   flex-grow: 1;
-  height: 21.8125rem;
+  max-height: 21.8125rem;
   overflow-y: auto;
-  margin-left: 3.125rem;
   color: #2c3e50;
   &__heading,
   &__row {

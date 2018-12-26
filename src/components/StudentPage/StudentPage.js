@@ -12,9 +12,8 @@ const b = block("StudentPage")
 
 const StudentPage = ({ currentUser }) => (
   <div className={b()}>
-    <RewardForm currenUser={currentUser} />
-    <Transactions currenUser={currentUser} />
     <Offers />
+    <Transactions currenUser={currentUser} />
   </div>
 )
 
