@@ -7,11 +7,12 @@
   justify-content: left;
   color: #2c3e50;
   &__student {
-    flex: 20%;
-    max-width: 20%;
+    flex: 1 1 24%;
+    max-width: 24%;
     min-width: 15rem;
     padding: 1.25rem;
-    margin-right: 1rem;
+    box-sizing: border-box;
+    margin-right: 1%;
     margin-bottom: 0.875rem;
     background-color: rgba(236, 240, 241, 0.7);
     &:last-child {

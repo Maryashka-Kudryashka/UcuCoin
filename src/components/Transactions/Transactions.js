@@ -83,7 +83,6 @@ const enhancer = compose(
       }
     })
     return { transactions: trans }
-    console.log(trans, "PROPSPF")
   })
 )
 
