@@ -1,8 +1,9 @@
 .TransactionForm {
   background: rgba(236, 240, 241, 0.7);
   padding: 1.25rem;
-  flex-basis: 410px;
+  flex-basis: 350px;
   display: block;
+  margin-right: 3rem;
 
   &__input {
     width: 100%;
