@@ -7,9 +7,15 @@ import "./Offers.scss"
 
 const b = block("Offers")
 
-const Offers = ({ products, formSubmission }) => (
+const Offers = ({ products, formSubmission, currentUser }) => (
   <div className={b()}>
-    <h3 className={b("header")}>Spend my coins!</h3>
+    <h3 className={b("header")}>
+      Spend my coins!{" "}
+      <span className={b("balance")}>
+        <div className={b("label")}>Wallet Balance</div>
+        <div>{currentUser.balance} UCU</div>
+      </span>
+    </h3>
     {products.map((product, id) => (
       <div className={b("offer")} key={id}>
         <div className={b("name")}>{product.name}</div>
@@ -18,7 +24,9 @@ const Offers = ({ products, formSubmission }) => (
             <span className={b("label")}>Price: </span>
             {product.price} UCU
           </span>
-          <button value={product.price} onClick={(ev) => formSubmission(ev)} className={b("button")}>buy</button>
+          <button value={product.price} onClick={ev => formSubmission(ev)} className={b("button")}>
+            buy
+          </button>
         </div>
       </div>
     ))}

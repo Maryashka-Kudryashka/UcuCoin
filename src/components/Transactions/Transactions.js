@@ -19,7 +19,6 @@ const Transactions = ({ transactions }) => (
         <div className={b("col", ["second"])}>Date</div>
         <div className={b("col", ["third"])}>To/From</div>
         <div className={b("col", ["fourth"])}>Amount</div>
-        <div className={b("col", ["fifth"])}>Issue</div>
         <div className={b("col", ["sixth"])}>Transaction ID</div>
       </div>
       {transactions.map((transaction, i) => (
@@ -31,7 +30,6 @@ const Transactions = ({ transactions }) => (
             <div className={b("status")}>{transaction.direction}</div>
           </div>
           <div className={b("col", ["fourth"])}>{transaction.amount}</div>
-          <div className={b("col", ["fifth"])}>Issue</div>
           <div className={b("col", ["sixth"])}>{transaction.id}</div>
         </div>
       ))}
@@ -59,29 +57,31 @@ const enhancer = compose(
   }),
   branch(({ currentUser }) => !currentUser.transactions, renderNothing),
   withProps(({ currentUser, users }) => {
-    const trans = currentUser.transactions.map(transaction => {
-      const date = new Date(transaction.timeStamp * 1000)
-      const personAddress =
-        transaction.from === currentUser.result.address.toLowerCase() ? transaction.to : transaction.from
-      const person = users.find(user => user.address.toLowerCase() === personAddress)
-      return {
-        status: "Confirmed",
-        date:
-          date.getFullYear() +
-          "-" +
-          date.getMonth() +
-          "-" +
-          date.getDay() +
-          " " +
-          date.getHours() +
-          ":" +
-          date.getSeconds(),
-        person: person.name + " " + person.surname,
-        direction: transaction.from === currentUser.result.address.toLowerCase() ? "Sent" : "Recieved",
-        amount: transaction.value,
-        id: transaction.hash
-      }
-    }).reverse()
+    const trans = currentUser.transactions
+      .map(transaction => {
+        const date = new Date(transaction.timeStamp * 1000)
+        const personAddress =
+          transaction.from === currentUser.result.address.toLowerCase() ? transaction.to : transaction.from
+        const person = users.find(user => user.address.toLowerCase() === personAddress)
+        return {
+          status: "Confirmed",
+          date:
+            date.getFullYear() +
+            "-" +
+            date.getMonth() +
+            "-" +
+            date.getDay() +
+            " " +
+            date.getHours() +
+            ":" +
+            date.getSeconds(),
+          person: person.name + " " + person.surname,
+          direction: transaction.from === currentUser.result.address.toLowerCase() ? "Sent" : "Recieved",
+          amount: transaction.value,
+          id: transaction.hash
+        }
+      })
+      .reverse()
     return { transactions: trans }
   })
 )
