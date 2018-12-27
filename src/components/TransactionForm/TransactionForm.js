@@ -10,7 +10,7 @@ import "./TransactionForm.scss"
 
 const b = block("TransactionForm")
 
-const TransactionsForm = ({ setAddress, setValue, setIssue, formSubmission, currenUser, options }) => (
+const TransactionsForm = ({ setAddress, setValue, formSubmission, currenUser, options }) => (
   <form
     className={b()}
     onSubmit={formSubmission}
@@ -19,9 +19,6 @@ const TransactionsForm = ({ setAddress, setValue, setIssue, formSubmission, curr
     <div className={b("balance")}>{currenUser.balance} UCU</div>
     <label className={b("label")}>Send to:</label>
     <Select className={b("input")} options={options} onChange={value => setAddress(value.value)} />
-
-    <label className={b("label")}>Issue:</label>
-    <input className={b("input")} onChange={ev => setIssue(ev.target.value)} />
 
     <label className={b("label")}>Amount:</label>
     <input className={b("input")} onChange={ev => setValue(ev.target.value)} />
@@ -33,7 +30,6 @@ const TransactionsForm = ({ setAddress, setValue, setIssue, formSubmission, curr
 const enhancer = compose(
   withState("value", "setValue"),
   withState("address", "setAddress"),
-  withState("issue", "setIssue"),
   connect(
     null,
     dispatch => ({

@@ -18,7 +18,7 @@ const TeacherPage = ({ users, currentUser }) => (
   <div className={b()}>
     <TransactionForm users={users} currenUser={currentUser} />
     <Transactions currentUser={currentUser} />
-    <Balances users={users} />
+    <Balances users={users} role={currentUser.result.role} />
   </div>
 )
 
@@ -47,7 +47,13 @@ const enhancer = compose(
         let balance = balanceObj ? balanceObj.value : 0
         return { ...user, balance }
       })
-      .filter(user => user._id != currentUser.result._id)
+      .filter(user => {
+        if (currentUser.result.role === "admin") {
+          return user.role === "teacher"
+        } else {
+          return user.role === "student"
+        }
+      })
   }))
 )
 

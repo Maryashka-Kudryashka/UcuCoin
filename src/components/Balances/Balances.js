@@ -4,9 +4,9 @@ import "./Balances.scss"
 
 const b = block("Balances")
 
-const Balances = ({ users = [] }) => (
+const Balances = ({ users = [], role }) => (
   <div className={b()}>
-    <h3 className={b("header")}>Students</h3>
+    <h3 className={b("header")}>{role === "admin" ? "Teachers" : "Students"}</h3>
     {users.map(el => (
       <>
         <div key={el.email} className={b("student")}>
