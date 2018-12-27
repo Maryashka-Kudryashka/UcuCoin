@@ -81,7 +81,7 @@ const enhancer = compose(
         amount: transaction.value,
         id: transaction.hash
       }
-    })
+    }).reverse()
     return { transactions: trans }
   })
 )

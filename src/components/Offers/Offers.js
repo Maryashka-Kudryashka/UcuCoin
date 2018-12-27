@@ -1,11 +1,13 @@
 import React from "react"
-import { compose, defaultProps } from "recompose"
+import { compose, defaultProps, withHandlers } from "recompose"
+import { makeTransaction } from "../../actions/balances"
+import { connect } from "react-redux"
 import block from "../../helpers/BEM"
 import "./Offers.scss"
 
 const b = block("Offers")
 
-const Offers = ({ products }) => (
+const Offers = ({ products, formSubmission }) => (
   <div className={b()}>
     <h3 className={b("header")}>Spend my coins!</h3>
     {products.map((product, id) => (
@@ -16,7 +18,7 @@ const Offers = ({ products }) => (
             <span className={b("label")}>Price: </span>
             {product.price} UCU
           </span>
-          <button className={b("button")}>buy</button>
+          <button value={product.price} onClick={(ev) => formSubmission(ev)} className={b("button")}>buy</button>
         </div>
       </div>
     ))}
@@ -32,7 +34,21 @@ const enhancer = compose(
       { name: "Ability to smoke everywhere", price: "40" },
       { name: "Lecture with Prutyla", price: "10" },
       { name: "Ticket for conference", price: "10" }
-    ]
+    ],
+    admin: "0xeea8F2465405331C7DB3D1EE441911b75E9EF93F"
+  }),
+  connect(
+    null,
+    dispatch => ({
+      pushTransaction: (adress, value) => dispatch(makeTransaction(adress, value))
+    })
+  ),
+  withHandlers({
+    formSubmission: ({ admin, pushTransaction }) => ev => {
+      if (admin && ev.target.value) {
+        pushTransaction(admin, ev.target.value)
+      }
+    }
   })
 )
 
