@@ -1,4 +1,4 @@
-import { AUTH_USER_SUCCESS, AUTH_USER_START, AUTH_USER_LOGOUT, FETCH_USER_BALANCE } from "../helpers/actionTypes"
+import { AUTH_USER_SUCCESS, AUTH_USER_START, AUTH_USER_LOGOUT, FETCH_USER_BALANCE, FETCH_TRANSACTIONS_SUCCESS } from "../helpers/actionTypes"
 
 export const currentUser = (state = {}, action) => {
   switch (action.type) {
@@ -9,8 +9,12 @@ export const currentUser = (state = {}, action) => {
     case AUTH_USER_LOGOUT:
       return { user: null, fetching: false }
     case FETCH_USER_BALANCE:
-      console.log(action, "RED")
       return { user: { ...state.user, balance: action.balance.value }, fetching: state.fetching }
+    case FETCH_TRANSACTIONS_SUCCESS:
+      return {
+        user: { ...state.user, transactions: action.transactions },
+        fetching: state.fetching
+      }
     default:
       return state
   }

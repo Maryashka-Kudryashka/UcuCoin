@@ -13,7 +13,6 @@ import "./styles/common.css"
 const history = createBrowserHistory()
 export const middleware = routerMiddleware(history)
 connectSmartContracts()
-// recheckBalances()
 
 ReactDOM.render(
   <Provider store={initStore(history)}>

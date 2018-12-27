@@ -6,7 +6,8 @@ import {
   AUTH_USER_START,
   AUTH_USER_SUCCESS,
   AUTH_USER_FAILED,
-  AUTH_USER_LOGOUT
+  AUTH_USER_LOGOUT,
+  FETCH_TRANSACTIONS_SUCCESS
 } from "../helpers/actionTypes"
 import { fetchBalances, fetchBalance } from "./balances"
 import { push } from "react-router-redux"
@@ -25,6 +26,8 @@ export const authUserSuccess = user => ({ type: AUTH_USER_SUCCESS, user })
 export const authUserFailed = () => ({ type: AUTH_USER_FAILED })
 
 export const authUserLogout = () => ({ type: AUTH_USER_LOGOUT })
+
+export const fetchUserTransactionsSuccess = (transactions) => ({ type: FETCH_TRANSACTIONS_SUCCESS, transactions })
 
 export const fetchUsers = () => async dispatch => {
   dispatch(fetchUsersStart())
@@ -55,7 +58,8 @@ export const authLogout = () => async dispatch => {
   dispatch(authUserLogout())
 }
 
-export const fetchUserTransactions = () => async dispatch => {
-  const transactions = await fromApiContract.getData("0x68F074d6eFF2EfEDDa3dC36BeB1E238C3117c90F")
-  console.log(transactions.result[0], "TRAANS")
+export const fetchUserTransactions = (address) => async dispatch => {
+  const transactions = await fromApiContract.getData(address)
+  console.log(transactions)
+  dispatch(fetchUserTransactionsSuccess(transactions.result))
 }

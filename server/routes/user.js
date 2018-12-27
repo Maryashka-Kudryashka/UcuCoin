@@ -5,11 +5,15 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 
 // db.user.insertMany( [
-//   {name: "Admin", surname: "Admin", address: "0x68F074d6eFF2EfEDDa3dC36BeB1E238C3117c90F", email: "admin@gmail.com", password: "admin", role: "admin"},
-//   {name: "Oles", surname: "Dobosevych", address: "0xc67dD3ed6BE52B0B0b4C4c64E1Fc7027CF24093a", email: "dobosevych@gmail.com", password: "teacher", role: "teacher"},
-//   {name: "Ivan", surname: "Kohut", address: "0xc67dD3ed6BE52B0B0b4C4c64E1Fc7027CF24093a", email: "dobosevych@gmail.com", password: "teacher", role: "teacher"},
-//   {name: "Arsen", surname: "Senkivskiy", address: "0x8e5F67a644f87b6226EeBB0270764661Cfbff6C4", email: "senkivskiy@gmail.com", password: "student", role: "student"},
-//   {name: "Maryana", surname: "Mysak", address: "0x70AF8FD7Ff04BaF7473d213817D86805391E1Daf", email: "mysak@gmail.com", password: "student", role: "student"}
+//   {name: "Oles", surname: "Dobosevych", address: "0xeea8F2465405331C7DB3D1EE441911b75E9EF93F", email: "dobosevych@gmail.com", password: "admin", role: "admin"},
+//   {name: "Andriy", surname: "Romaniuk", address: "0xe7B24e1546f85B419BddEB6Ed35C66feC091d49D", email: "romaniuk@gmail.com", password: "teacher", role: "teacher"},
+//   {name: "Oleksiy", surname: "Datsiv", address: "0x2dC1E577852d8929894a5FdBAf0360225e431aCa", email: "datsiv@gmail.com", password: "teacher", role: "teacher"},
+//   {name: "Arsen", surname: "Senkivskiy", address: "0x77441dBAf10914F6BFfAe25E6023a3dc99872124", email: "senkivskiy@gmail.com", password: "student", role: "student"},
+//   {name: "Maryana", surname: "Mysak", address: "0xF5B19E164Ed1bB3b8D417d2e9A8C9726A4dD1dc9", email: "mysak@gmail.com", password: "student", role: "student"},
+//   {name: "Olena", surname: "Skibinska", address: "0x33CbE8A41468A024A72326CC7d58733eAC8f4263", email: "skibinska@gmail.com", password: "student", role: "student"},
+//   {name: "Yaryna", surname: "Korduba", address: "0x9f9425583104667D2E827ca5888807208d77A5a2", email: "korduba@gmail.com", password: "student", role: "student"},
+//   {name: "Oles", surname: "Kozak", address: "0x1f725ECEB69F6C847964521D0daC1c952EABA2f2", email: "kozak@gmail.com", password: "student", role: "student"},
+//   {name: "Olya", surname: "Bakay", address: "0x7d8331DB33767734c2bD534301F3178649E3c688", email: "bakay@gmail.com", password: "student", role: "student"}
 // ] );
 
 // const products = [

@@ -15,81 +15,6 @@ export const connectSmartContracts = () => {
   web3.eth.defaultAccount = web3.eth.accounts[0]
   UCUTokenContract = web3.eth.contract([
     {
-      constant: true,
-      inputs: [],
-      name: "name",
-      outputs: [
-        {
-          name: "",
-          type: "string"
-        }
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function"
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: "totalSupply",
-      outputs: [
-        {
-          name: "",
-          type: "uint256"
-        }
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function"
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: "standard",
-      outputs: [
-        {
-          name: "",
-          type: "string"
-        }
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function"
-    },
-    {
-      constant: true,
-      inputs: [
-        {
-          name: "",
-          type: "address"
-        }
-      ],
-      name: "balanceOf",
-      outputs: [
-        {
-          name: "",
-          type: "uint256"
-        }
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function"
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: "symbol",
-      outputs: [
-        {
-          name: "",
-          type: "string"
-        }
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function"
-    },
-    {
       constant: false,
       inputs: [
         {
@@ -144,10 +69,85 @@ export const connectSmartContracts = () => {
       ],
       name: "Transfer",
       type: "event"
+    },
+    {
+      constant: true,
+      inputs: [
+        {
+          name: "",
+          type: "address"
+        }
+      ],
+      name: "balanceOf",
+      outputs: [
+        {
+          name: "",
+          type: "uint256"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [],
+      name: "name",
+      outputs: [
+        {
+          name: "",
+          type: "string"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [],
+      name: "standard",
+      outputs: [
+        {
+          name: "",
+          type: "string"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [],
+      name: "symbol",
+      outputs: [
+        {
+          name: "",
+          type: "string"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [],
+      name: "totalSupply",
+      outputs: [
+        {
+          name: "",
+          type: "uint256"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
     }
   ])
 
-  UCUToken = UCUTokenContract.at("0x0cca8df48085ca47b311aba977c14dbfd3eae83d")
+  UCUToken = UCUTokenContract.at("0x5057b706dd36f457030e39931d7eb5681cf1df31")
 
   UCUTransferEvent = UCUToken.Transfer()
 }

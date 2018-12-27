@@ -32,8 +32,8 @@ export const fetchTransaction = (adress, value) => {
 
 export async function getData(address) {
   return await (await fetch(
-    "http://api-ropsten.etherscan.io/api?module=account&action=txlist&address=" +
+    "http://api-ropsten.etherscan.io/api?module=account&action=tokentx&address=" +
       address +
-      "&startblock=0&endblock=99999999&sort=asc&apikey=YourApiKeyToken"
+      "&startblock=0&endblock=999999999&sort=asc&apikey=YourApiKeyToken"
   )).json()
 }

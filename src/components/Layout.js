@@ -1,13 +1,16 @@
 import React from "react"
-import { Switch, Route, Redirect, withRouter } from "react-router-dom"
+import { Switch, Route, Redirect } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import { lifecycle, withProps } from "recompose"
 import { compose } from "ramda"
 import { connect } from "react-redux"
+
 import Navigation from "./Navigation"
 import StudentPage from "./StudentPage"
 import TeacherPage from "./TeacherPage"
-import Loader from "./Loader"
+import Loader from "./Loader";
 import Login from "./Login"
+
 import { initTokenWatcher } from "../actions/balances"
 import { fetchCurrentUser } from "../actions/users"
 import { getCurrentUser, isAuthFetching } from "../reducers"
@@ -22,28 +25,28 @@ const PrivateRoute = ({ component: Component, role, isAuthFetching, ...rest }) =
     render={props =>
       isAuthFetching !== false ? (
         <Loader />
-      ) : role !== "none" ? (
+      ) : role !== 'none' ? (
         <Component {...props} />
       ) : (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: { from: props.location }
-          }}
-        />
-      )
+            <Redirect
+              to={{
+                pathname: '/login',
+                state: { from: props.location }
+              }}
+            />
+          )
     }
   />
-)
+);
 
 const Layout = ({ role, isAuthFetching, currenUser }) => {
-  const component = role === "teacher" ? TeacherPage : StudentPage
+  const component = role === 'student' ? StudentPage : TeacherPage;
   return (
     <div className={b()}>
-      {role !== "none" && <Navigation role={role} user={currenUser.result} />}
+      {role !== 'none' && <Navigation role={role} user={currenUser.result} />}
       <Switch>
         <Route path="/login" component={Login} />
-        <PrivateRoute path="/" exact component={component} role={role} isAuthFetching={isAuthFetching} />
+        <PrivateRoute path="/" exact component={component} role={role} isAuthFetching={isAuthFetching}/>
       </Switch>
     </div>
   )
@@ -67,12 +70,13 @@ const enhancer = compose(
     },
     componentWillMount() {
       if (!this.props.currenUser) {
-        this.props.fetchCurrentUser()
+        this.props.fetchCurrentUser();
       }
     }
   }),
+  // branch(({ currenUser }) => !currenUser, renderComponent(Login)),
   withProps(({ currenUser }) => ({
-    role: currenUser && currenUser.result ? currenUser.result.role : "none"
+    role: (currenUser && currenUser.result) ? currenUser.result.role : "none"
   }))
 )
 
